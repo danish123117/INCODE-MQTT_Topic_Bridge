@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  mosquitto:
+    image: eclipse-mosquitto:1.6.14
+    hostname: mosquitto
+    container_name: mosquitto
+    expose:
+      - "1883"
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  topicbridge:
+    image: danny0117/incode-heu-mqtt-topic-bridge:1.1.0
+    hostname: topicbridge
+    container_name: topicbridge 
+    expose:
+        - "1883"
+    environment:
+        - POLAR_H10_API_KEY=danishabbas2
+        - MQTT_BROKER_NAME=mosquitto
+        - MQTT_BROKER_PORT=1883
+    depends_on:
+      - mosquitto
+
+
