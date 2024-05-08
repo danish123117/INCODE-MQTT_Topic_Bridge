@@ -8,8 +8,8 @@ def on_message(client, userdata, message):
 
 def main():
     danishabbas_topic = os.getenv("POLAR_H10_API_KEY", "danishabbas2")
-    broker = os.getenv("MQTT_BROKER_NAME", "mosquitto")
-    port = int(os.getenv("MQTT_BROKER_PORT", 1883))
+    broker = os.getenv("MQTT_BROKER_NAME", 'localhost')
+    port = int(os.getenv("MQTT_BROKER_PORT", 1880))
     broker_address = broker
     broker_port = port
     client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
